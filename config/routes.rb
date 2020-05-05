@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
 
-
+  get("/", { :controller => "application", :action => "render_form" })
+  get("/submit", { :controller => "application", :action => "submit_form" })
   # ===============================================
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
