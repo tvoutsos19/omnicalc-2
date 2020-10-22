@@ -38,6 +38,20 @@ class GeocodingController < ApplicationController
 
     @dark_sky = "https://api.darksky.net/forecast/" + dark_sky_key + "/" + @latitude + "," + @longitude
 
+    @raw_weather = open(@dark_sky).read
+
+    @parsed_weather = JSON.parse(@raw_weather)
+
+    @temperature = @parsed_weather.dig("currently","temperature")
+
+    @summary = @parsed_weather.dig("currently","summary")
+
+    @next_sixty = @parsed_weather.dig("minutely","summary")
+
+    @next_several_hours = @parsed_weather.dig("hourly","summary")
+
+    @next_several_days = @parsed_weather.dig("daily","summary")
+
     render ({ :template => "weather_templates/weather_results.html.erb"})
 
   end
