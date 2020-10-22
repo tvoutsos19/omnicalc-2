@@ -4,7 +4,9 @@ class GeocodingController < ApplicationController
 
     @address_from_user = params.fetch("street_address")
 
-    @gmaps_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + @address_from_user + "&key=AIzaSyDB6uZXmYRlo88RLhAxD-yxUbMIZd4oHpg"
+    gmaps_key = ENV.fetch("GMAPS_KEY")
+
+    @gmaps_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + @address_from_user + "&key=" + gmaps_key
 
     @raw_data = open(@gmaps_url).read
 
@@ -32,7 +34,10 @@ class GeocodingController < ApplicationController
     @latitude = params.fetch("latitude")
     @longitude = params.fetch("longitude")
 
-    @dark_sky = "https://api.darksky.net/forecast/26f63e92c5006b5c493906e7953da893/" + @latitude + "," + @longitude
+    dark_sky_key = ENV.fetch("DARK_SKY")
+
+    @dark_sky = "https://api.darksky.net/forecast/" + dark_sky_key + "/" + @latitude + "," + @longitude
+
     render ({ :template => "weather_templates/weather_results.html.erb"})
 
   end
