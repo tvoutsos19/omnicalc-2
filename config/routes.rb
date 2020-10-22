@@ -16,7 +16,13 @@ Rails.application.routes.draw do
 
   get("/divide/result", { :controller => "application", :action => "divide_results"})
 
-  get("/street_to_coords/new", { :controller => "application", :action => "street_coords"})
+  get("/street_to_coords/new", { :controller => "geocoding", :action => "street_coords"})
+
+  get("/street_to_coords/results", { :controller => "geocoding", :action => "get_latlon"})
+
+  get("/coords_to_weather/new", { :controller => "geocoding", :action => "weather_coords"})
+
+   get("/coords_to_weather/results", { :controller => "geocoding", :action => "get_weather"})
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

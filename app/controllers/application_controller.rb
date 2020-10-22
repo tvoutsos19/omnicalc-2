@@ -47,9 +47,4 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def street_coords
-    render ({ :template => "operations/street_coords.html.erb"})
-
-  end
-
 end
