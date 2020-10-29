@@ -24,9 +24,13 @@ Rails.application.routes.draw do
 
   get("/coords_to_weather/results", { :controller => "geocoding", :action => "get_weather"})
 
-  get("/muggle_translate", { :controller => "translate", :action => "translation_form"}
+  get("/street_to_weather/new", { :controller => "combined", :action => "new_address"})
 
-   get("/muggle_translate", { :controller => "translate", :action => "translation_form"}
+  get("/street_to_weather/results", { :controller => "combined", :action => "address_results"})
+
+  get("/muggle_translate", { :controller => "translate", :action => "translation_form"})
+
+  get("/muggle_translate", { :controller => "translate", :action => "translation_form"})
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
